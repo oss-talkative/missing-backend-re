@@ -6,10 +6,10 @@ from .serializers import MChileSerializer
 
 # Create your views here.
 
-@api_view(['Post'])
+@api_view(['POST'])
 def addFoundChild(request):
         serializer=MChileSerializer(data=request.data)
-        print("-----------", request.GET.get("name"))
+        print("-----------", request.data)
         if(serializer.is_valid()):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

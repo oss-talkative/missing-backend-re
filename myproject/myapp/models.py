@@ -8,8 +8,8 @@ class MChild(models.Model):
         (GENDER_FEMALE, "Female"),
     )
 
-    name=models.TextField(null=True, blank=True)
-    gender=models.CharField(choices=GENDER_CHICES, max_length=10, null=True, blank=True)
+    name=models.TextField(null=True)
+    gender=models.TextField(null=True, blank=True)
     height=models.FloatField(null=True, blank=True)
     age=models.IntegerField(null=True, blank=True)
     ageNow=models.IntegerField(null=True, blank=True)

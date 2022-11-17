@@ -9,6 +9,7 @@ from .serializers import MChileSerializer
 @api_view(['Post'])
 def addFoundChild(request):
         serializer=MChileSerializer(data=request.data)
+        print("-----------", request.GET.get("name"))
         if(serializer.is_valid()):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

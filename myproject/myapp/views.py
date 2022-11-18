@@ -34,13 +34,21 @@ def FoundChild(request):
         serializer=MChileSerializer(mchild, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 def nameFoundChild(request):
     if request.method == 'POST':
         # print("----------------", request.data)
-        post=MChild.objects.filter(name=request.data['name']).all()
-        serializer=MChileSerializer(post, many=True)
+        mchild=MChild.objects.filter(name=request.data['name']).all()
+        serializer=MChileSerializer(mchild, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     mchild = MChild.objects.filter().all()
     serializer=MChileSerializer(mchild, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def nameFoundChild(request, name):
+    if request.method == 'GET':
+        mchild=MChild.objects.filter(name=request.data[name]).all()
+        serializer=MChileSerializer(mchild)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

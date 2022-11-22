@@ -1,16 +1,9 @@
 from django.db import models
 
 class MChild(models.Model):
-    GENDER_MALE = "male"
-    GENDER_FEMALE = "female"
-    GENDER_CHICES = (
-        (GENDER_MALE, "Male"),
-        (GENDER_FEMALE, "Female"),
-    )
 
     name=models.TextField(null=True)
     gender=models.TextField(null=True, blank=True)
-    height=models.FloatField(null=True, blank=True)
     age=models.IntegerField(null=True, blank=True)
     ageNow=models.IntegerField(null=True, blank=True)
     alldressing=models.TextField(null=True, blank=True)

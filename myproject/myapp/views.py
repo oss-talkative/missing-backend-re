@@ -4,12 +4,20 @@ from rest_framework.decorators import api_view
 from .models import MChild
 from .serializers import MChileSerializer
 
+# from django.views.decorators.csrf import csrf_exempt
+# from django.utils.decorators import method_decorator
+
 # Create your views here.
 
+# @method_decorator(csrf_exempt,name='dispatch')
 @api_view(['POST'])
 def addFoundChild(request):
-        serializer=MChileSerializer(data=request.data)
-        print("-----------", request.data)
+        try:
+            print("-----------", request.data)
+            serializer=MChileSerializer(data=request.data)
+            print("serializer:", serializer)
+        except Exception as e:
+            print('expection::',e)
         if(serializer.is_valid()):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -34,7 +42,7 @@ def FoundChild(request):
         serializer=MChileSerializer(mchild, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def nameFoundChild(request):
     if request.method == 'POST':
         # print("----------------", request.data)
@@ -45,10 +53,10 @@ def nameFoundChild(request):
     serializer=MChileSerializer(mchild, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
-def nameFoundChild(request, name):
-    if request.method == 'GET':
-        mchild=MChild.objects.filter(name=request.data[name]).all()
-        serializer=MChileSerializer(mchild)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# @api_view(['GET'])
+# def nameFoundChild(request, name):
+#     if request.method == 'GET':
+#         mchild=MChild.objects.filter(name=request.data[name]).all()
+#         serializer=MChileSerializer(mchild)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

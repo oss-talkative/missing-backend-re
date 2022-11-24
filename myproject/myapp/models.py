@@ -9,7 +9,8 @@ class MChild(models.Model):
     alldressing=models.TextField(null=True, blank=True)
     occrAdd=models.TextField(null=True, blank=True)
     occrDate=models.DateField(null=True, blank=True)
-    writngTarget=models.TextField(blank=True)
+    writngTarget=models.TextField(null=True, blank=True)
+    inform=models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

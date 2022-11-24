@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.shortcuts import render
 from .models import MChild
 from .serializers import MChileSerializer
 
@@ -9,9 +10,12 @@ from .serializers import MChileSerializer
 
 # Create your views here.
 
+def index(req):
+    return render(req,'index.html')
+
 # @method_decorator(csrf_exempt,name='dispatch')
 @api_view(['POST'])
-def addFoundChild(request):
+def addMissingChild(request):
         try:
             print("-----------", request.data)
             serializer=MChileSerializer(data=request.data)

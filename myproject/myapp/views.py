@@ -20,12 +20,12 @@ def addMissingChild(request):
             print("-----------", request.data)
             serializer=MChileSerializer(data=request.data)
             print("serializer:", serializer)
+            if(serializer.is_valid()):
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             print('expection::',e)
-        if(serializer.is_valid()):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['Get'])
 def allFoundChild(request):

@@ -1,12 +1,16 @@
 # missing-backend
+- 실종자 신고 서비를 위한 서버 사이드(Back End) with Django
+- 실행 및 자세한 설명에 관하여 메인 페이지 [이곳](https://github.com/oss-talkative)을 참고해주세요
+
+<br>
 
 ## 🔗URL
-|base url|
+|url|
 |:--:|
 |missingChild.pythonanywhere.com/|
 
 ## 🔗API
-|url|request|contents
+|uri|request|contents
 |:--:|:--:|:--:|
 |/allFoundChild|GET|발견 신고된 모든 정보 반환|
 |/addMissingChild|POST|field 요청으로 실종자 발견 신고|
